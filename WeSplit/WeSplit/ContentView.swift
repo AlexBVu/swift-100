@@ -9,19 +9,25 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let students = ["Alex", "Cole", "Stefan"]
-    @State private var selectedStudent = "Alex"
+    let units = ["Meters", "Kilometers", "Feet", "Yards", "Miles"]
+    @State private var selectedUnit = "Feet"
+    
+    @State private var startDistance = 0.0
+    
     
     var body: some View {
         NavigationStack {
             Form {
-                Picker("Select your student", selection: $selectedStudent) {
-                    ForEach(students, id: \.self) {
+                Picker("Select your starter unit", selection: $selectedUnit) {
+                    ForEach(units, id: \.self) {
                         Text($0)
                     }
                 }
+                Section {
+                    TextField("Distance", value: $startDistance, formatter: NumberFormatter())
+                }
             }
-            .navigationTitle("Select a student")
+            .navigationTitle("Unit Conversion")
         }
     }
 }
